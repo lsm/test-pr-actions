@@ -11,15 +11,21 @@ on:
     - prod
 
 jobs:
-  build:
-
+  verify:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - name: Verify is for all pushes / PRs
+        run: echo Verify job running...
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Build job running...
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/stage' || github.ref == 'refs/heads/prod'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Deploy job running...
