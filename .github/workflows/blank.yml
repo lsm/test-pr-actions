@@ -2,13 +2,15 @@ name: CI
 
 on:
   push:
-    - master
-    - stage
-    - prod
+    branches:
+      - master
+      - stage
+      - prod
   pull_request:
-    - master
-    - stage
-    - prod
+    branches: 
+      - master
+      - stage
+      - prod
 
 jobs:
   verify:
