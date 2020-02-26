@@ -13,23 +13,17 @@ on:
       - prod
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Verify is for all pushes / PRs
-        run: echo Verify job running...
-      - name: Dump Github info
-        run: echo "${{ toJSON(github) }}"
   build:
+    name: Verify + Build 
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/stage' && github.ref != 'refs/heads/prod'
     steps:
-      - uses: actions/checkout@v2
-      - name: Run a one-line script
-        run: echo Build job running...
+      - name: Verify + Build is for all PRs to master/stage/prod.
+        run: echo build job running...
   deploy:
+    name: Verify + Build + Deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/stage' || github.ref == 'refs/heads/prod'
     steps:
-      - uses: actions/checkout@v2
-      - name: Run a one-line script
+      - name: Verify + Build + Deploy is for all pushes to master/stage/prod.
         run: echo Deploy job running...
