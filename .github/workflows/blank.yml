@@ -19,7 +19,7 @@ jobs:
       - name: Verify is for all pushes / PRs
         run: echo Verify job running...
       - name: Dump Github info
-        run: echo ${{ toJSON(github) }}
+        run: echo "${{ toJSON(github) }}"
   build:
     runs-on: ubuntu-latest
     steps:
