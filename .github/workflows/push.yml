@@ -1,0 +1,16 @@
+name: PUSH
+
+on:
+  push:
+    branches:
+      - master
+      - stage
+      - prod
+
+jobs:
+  job1:
+    name: Job triggered by push to (master/stage/prod)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run for push (master/stage/prod)
+        run: echo "Job triggered by push to ${{ github.ref }}"
