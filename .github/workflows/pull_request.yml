@@ -1,0 +1,16 @@
+name: PR
+
+on:
+  pull_request:
+    branches: 
+      - master
+      - stage
+      - prod
+
+jobs:
+  job1:
+    name: Job triggered by PR to (master/stage/prod)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run for PR (master/stage/prod)
+        run: echo "Job triggered by PR to ${{ github.ref }}"
